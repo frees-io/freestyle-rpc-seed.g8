@@ -3,7 +3,7 @@ package $package$.server.app
 import cats.effect._
 import cats.syntax.flatMap._
 import cats.syntax.functor._
-import $package$.common.SeedConfig
+import $package$.common.$name;format="Camel"$Config
 import $package$.protocol.PeopleService
 import $package$.server.process.PeopleServiceHandler
 import fs2.{Stream, StreamApp}
@@ -12,7 +12,7 @@ import freestyle.rpc.server._
 
 class ServerProgram[F[_]: Effect] extends ServerBoot[F] {
 
-  override def serverStream(config: SeedConfig)(
+  override def serverStream(config: $name;format="Camel"$Config)(
       implicit L: Logger[F]): Stream[F, StreamApp.ExitCode] = {
 
     val serverName = s"\${config.name}"

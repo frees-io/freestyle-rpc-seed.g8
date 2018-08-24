@@ -1,7 +1,7 @@
 package $package$.server.app
 
 import cats.effect.Effect
-import $package$.common.SeedConfig
+import $package$.common.$name;format="Camel"$Config
 import $package$.config.ConfigService
 import io.chrisdavenport.log4cats.Logger
 import io.chrisdavenport.log4cats.slf4j.Slf4jLogger
@@ -14,10 +14,10 @@ abstract class ServerBoot[F[_]: Effect] extends StreamApp[F] {
 
   override def stream(args: List[String], requestShutdown: F[Unit]): Stream[F, StreamApp.ExitCode] =
     for {
-      config   <- ConfigService[F].serviceConfig[SeedConfig]
+      config   <- ConfigService[F].serviceConfig[$name;format="Camel"$Config]
       logger   <- Stream.eval(Slf4jLogger.fromName[F](config.name))
       exitCode <- serverStream(config)(logger)
     } yield exitCode
 
-  def serverStream(config: SeedConfig)(implicit L: Logger[F]): Stream[F, StreamApp.ExitCode]
+  def serverStream(config: $name;format="Camel"$Config)(implicit L: Logger[F]): Stream[F, StreamApp.ExitCode]
 }
